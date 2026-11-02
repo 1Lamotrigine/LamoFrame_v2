@@ -1,0 +1,135 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Проекты — LamoFrame{% endblock %}
+{% block styles %}<link rel="stylesheet" href="{% static 'css/dashboard.css' %}?v={{ ASSET_VERSION }}">{% endblock %}
+
+{% block content %}
+<header class="topbar dash-topbar">
+  <a class="logo" href="{% url 'dashboard' %}">
+    <span class="logo-mark"><svg class="icon"><use href="{% static 'icons.svg' %}#i-logo"></use></svg></span>
+    LamoFrame
+  </a>
+  <div class="dash-search">
+    <svg class="icon icon-sm"><use href="{% static 'icons.svg' %}#i-search"></use></svg>
+    <form method="get" action="{% url 'dashboard' %}">
+      <input name="q" value="{{ query }}" placeholder="Поиск по проектам…" aria-label="Поиск по проектам">
+    </form>
+  </div>
+  <div class="spacer"></div>
+  <button class="btn btn-icon" type="button" data-theme-toggle aria-label="Переключить тему">
+    <svg class="icon theme-icon-light"><use href="{% static 'icons.svg' %}#i-moon"></use></svg>
+    <svg class="icon theme-icon-dark"><use href="{% static 'icons.svg' %}#i-sun"></use></svg>
+  </button>
+  <div class="dash-user">
+    <span class="avatar" title="{{ user.username }}">{{ user.username|slice:":1" }}</span>
+    <span class="dash-user-name">{{ user.username }}</span>
+  </div>
+  <form method="post" action="{% url 'logout' %}">
+    {% csrf_token %}
+    <button class="btn btn-icon" type="submit" aria-label="Выйти" title="Выйти">
+      <svg class="icon"><use href="{% static 'icons.svg' %}#i-log-out"></use></svg>
+    </button>
+  </form>
+  <a class="btn btn-primary" href="{% url 'new_project' %}">
+    <svg class="icon"><use href="{% static 'icons.svg' %}#i-plus"></use></svg>
+    Новый проект
+  </a>
+</header>
+
+<main class="dash-main">
+  <div class="dash-head">
+    <div>
+      <h1>{% if query %}Результаты поиска{% else %}Мои проекты{% endif %}</h1>
+      <p class="muted">
+        {% if query %}
+          {{ projects|length }} по запросу «{{ query }}» · <a class="text-link" href="{% url 'dashboard' %}">сбросить</a>
+        {% else %}
+          {{ projects|length }} {{ projects|length|pluralize:"проект,проекта,проектов" }} в вашей мастерской
+        {% endif %}
+      </p>
+    </div>
+    <div class="dash-head-actions">
+      <a class="btn btn-outline" href="{% url 'new_project' %}">
+        <svg class="icon"><use href="{% static 'icons.svg' %}#i-grid"></use></svg>
+        Из шаблона
+      </a>
+    </div>
+  </div>
+
+  {% if projects %}
+    <div class="project-grid">
+      {% for project in projects %}
+        <article class="project-card" data-project-id="{{ project.pk }}">
+          <a class="project-preview" href="{% url 'editor' project.pk %}" aria-label="Открыть {{ project.title }}">
+            <div class="project-frame-wrap">
+              <iframe class="project-frame" sandbox="" tabindex="-1" aria-hidden="true" title=""></iframe>
+            </div>
+            <div class="project-empty-preview" hidden>
+              <svg class="icon icon-lg"><use href="{% static 'icons.svg' %}#i-layers"></use></svg>
+              <span>Пустая страница</span>
+            </div>
+            <div class="project-overlay">
+              <span class="project-open">Открыть редактор</span>
+            </div>
+          </a>
+          <div class="project-meta">
+            <div class="project-text">
+              <h3><a href="{% url 'editor' project.pk %}">{{ project.title }}</a></h3>
+              <p class="muted">Изменён {{ project.updated_at|timesince }} назад</p>
+            </div>
+            <div class="project-actions">
+              {% if project.exported_html %}
+                <a class="btn btn-icon" href="{% url 'public_preview' project.slug %}" target="_blank" rel="noopener"
+                   aria-label="Публичное превью" title="Публичное превью">
+                  <svg class="icon"><use href="{% static 'icons.svg' %}#i-external"></use></svg>
+                </a>
+              {% endif %}
+              <button class="btn btn-icon" type="button" data-action="duplicate" data-id="{{ project.pk }}"
+                      aria-label="Дублировать" title="Дублировать">
+                <svg class="icon"><use href="{% static 'icons.svg' %}#i-copy"></use></svg>
+              </button>
+              <button class="btn btn-icon danger-hover" type="button" data-action="delete" data-id="{{ project.pk }}"
+                      aria-label="Удалить" title="Удалить" data-title="{{ project.title }}">
+                <svg class="icon"><use href="{% static 'icons.svg' %}#i-trash"></use></svg>
+              </button>
+            </div>
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="dash-empty">
+      <div class="dash-empty-art" aria-hidden="true">
+        <div class="empty-page">
+          <span></span><span></span><span></span>
+          <div class="empty-cursor"></div>
+        </div>
+      </div>
+      {% if query %}
+        <h2>Ничего не найдено</h2>
+        <p class="muted">Попробуйте другой запрос или создайте новый проект.</p>
+        <div class="dash-empty-actions">
+          <a class="btn btn-outline" href="{% url 'dashboard' %}">Сбросить поиск</a>
+          <a class="btn btn-primary" href="{% url 'new_project' %}">Новый проект</a>
+        </div>
+      {% else %}
+        <h2>Здесь появится ваш первый сайт</h2>
+        <p class="muted">Выберите готовый шаблон — лендинг, портфолио или визитку — и соберите страницу на холсте.</p>
+        <div class="dash-empty-actions">
+          <a class="btn btn-primary" href="{% url 'new_project' %}">
+            <svg class="icon"><use href="{% static 'icons.svg' %}#i-plus"></use></svg>
+            Создать проект
+          </a>
+        </div>
+      {% endif %}
+    </div>
+  {% endif %}
+</main>
+
+{{ project_data|json_script:"projects-data" }}
+<form id="action-form" method="post" hidden>{% csrf_token %}</form>
+{% endblock %}
+
+{% block scripts %}
+<script type="module" src="{% static 'js/dashboard.js' %}?v={{ ASSET_VERSION }}"></script>
+{% endblock %}

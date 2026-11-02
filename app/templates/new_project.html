@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Новый проект — LamoFrame{% endblock %}
+{% block styles %}<link rel="stylesheet" href="{% static 'css/new-project.css' %}?v={{ ASSET_VERSION }}">{% endblock %}
+
+{% block content %}
+<header class="topbar new-topbar">
+  <a class="logo" href="{% url 'dashboard' %}">
+    <span class="logo-mark"><svg class="icon"><use href="{% static 'icons.svg' %}#i-logo"></use></svg></span>
+    LamoFrame
+  </a>
+  <div class="divider-v"></div>
+  <a class="btn btn-ghost back-link" href="{% url 'dashboard' %}">
+    <svg class="icon icon-sm" style="transform:rotate(180deg)"><use href="{% static 'icons.svg' %}#i-chevron-right"></use></svg>
+    Все проекты
+  </a>
+  <div class="spacer"></div>
+  <span class="muted new-step">Шаг 1 из 2 · выбор шаблона</span>
+  <button class="btn btn-icon" type="button" data-theme-toggle aria-label="Переключить тему">
+    <svg class="icon theme-icon-light"><use href="{% static 'icons.svg' %}#i-moon"></use></svg>
+    <svg class="icon theme-icon-dark"><use href="{% static 'icons.svg' %}#i-sun"></use></svg>
+  </button>
+</header>
+
+<main class="new-main">
+  <div class="new-head">
+    <span class="eyebrow">Новый проект</span>
+    <h1>С чего начнём?</h1>
+    <p class="muted">Возьмите готовый шаблон — его можно полностью переделать. Или начните с чистого холста.</p>
+  </div>
+
+  <form method="post" action="{% url 'create_project' %}" id="createForm" class="new-form">
+    {% csrf_token %}
+    <input type="hidden" name="template" id="templateInput" value="">
+
+    <div class="template-grid">
+      <button class="template-card blank-card" type="button" data-template="" data-title="Новый сайт">
+        <div class="template-preview blank-preview">
+          <div class="blank-art">
+            <span></span><span></span><span></span>
+            <div class="blank-cursor"></div>
+          </div>
+          <span class="template-check"><svg class="icon"><use href="{% static 'icons.svg' %}#i-check"></use></svg></span>
+        </div>
+        <div class="template-info">
+          <div>
+            <h3>Пустой холст</h3>
+            <p class="muted">Одна секция 1200 px. Полная свобода.</p>
+          </div>
+          <span class="template-badge">С нуля</span>
+        </div>
+      </button>
+
+      {% for template in templates %}
+        <button class="template-card" type="button" data-template="{{ template.pk }}" data-title="{{ template.title }}">
+          <div class="template-preview">
+            <div class="template-frame-wrap">
+              <iframe class="template-frame" data-template-id="{{ template.pk }}" sandbox="" tabindex="-1" aria-hidden="true" title=""></iframe>
+            </div>
+            <span class="template-check"><svg class="icon"><use href="{% static 'icons.svg' %}#i-check"></use></svg></span>
+          </div>
+          <div class="template-info">
+            <div>
+              <h3>{{ template.title }}</h3>
+              <p class="muted">{{ template.description }}</p>
+            </div>
+            {% if forloop.first %}<span class="template-badge is-accent">Популярный</span>{% endif %}
+          </div>
+        </button>
+      {% endfor %}
+    </div>
+
+    <div class="create-bar">
+      <div class="create-bar-inner">
+        <div class="create-title">
+          <label for="projectTitle">Название проекта</label>
+          <input class="input" id="projectTitle" name="title" value="" placeholder="Например, «Сайт студии»" maxlength="200">
+        </div>
+        <div class="create-hint muted" id="templateHint">Выберите шаблон</div>
+        <button class="btn btn-primary create-btn" type="submit">
+          Создать проект
+          <svg class="icon"><use href="{% static 'icons.svg' %}#i-chevron-right"></use></svg>
+        </button>
+      </div>
+    </div>
+  </form>
+</main>
+
+{{ template_data|json_script:"templates-data" }}
+{% endblock %}
+
+{% block scripts %}
+<script type="module" src="{% static 'js/new_project.js' %}?v={{ ASSET_VERSION }}"></script>
+{% endblock %}

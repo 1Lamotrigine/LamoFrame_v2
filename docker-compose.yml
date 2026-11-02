@@ -1,0 +1,40 @@
+services:
+  web:
+    build: .
+    image: site-builder:latest
+    container_name: site-builder
+    ports:
+      - "8000:8000"
+    environment:
+      # Прод-режим по умолчанию: статика с хеш-именами (immutable-кеш),
+      # так браузер никогда не подставит устаревший CSS после пересборки.
+      # Для отладки шаблонов задайте DJANGO_DEBUG=1.
+      DJANGO_DEBUG: "${DJANGO_DEBUG:-0}"
+      DJANGO_SECRET_KEY: "${DJANGO_SECRET_KEY:-}"
+      DJANGO_ALLOWED_HOSTS: "${DJANGO_ALLOWED_HOSTS:-localhost,127.0.0.1,[::1]}"
+      # Демо-данные создаются только при явном SEED_DEMO=1. Пароли берутся
+      # из окружения; без них команда сгенерирует случайный пароль и
+      # напечатает его в логах контейнера.
+      SEED_DEMO: "${SEED_DEMO:-0}"
+      DEMO_PASSWORD: "${DEMO_PASSWORD:-}"
+      ADMIN_PASSWORD: "${ADMIN_PASSWORD:-}"
+      # Вход через Google. Задайте ключи OAuth-клиента в .env — без них
+      # кнопка «Войти через Google» скрыта, остальной вход работает как прежде.
+      GOOGLE_CLIENT_ID: "${GOOGLE_CLIENT_ID:-}"
+      GOOGLE_CLIENT_SECRET: "${GOOGLE_CLIENT_SECRET:-}"
+      SQLITE_PATH: "/data/db.sqlite3"
+    volumes:
+      - sqlite-data:/data
+      - media-data:/app/app/media
+    healthcheck:
+      # Проверяем и страницу, и CSS — «healthy» гарантирует, что стили уже отдаются.
+      test: ["CMD-SHELL", "curl -fsS http://localhost:8000/accounts/login/ >/dev/null && curl -fsS http://localhost:8000/static/css/base.css >/dev/null"]
+      interval: 10s
+      timeout: 5s
+      retries: 6
+      start_period: 30s
+    restart: unless-stopped
+
+volumes:
+  sqlite-data:
+  media-data:

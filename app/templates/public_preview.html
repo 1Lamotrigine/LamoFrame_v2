@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}{{ project.title }}{% endblock %}
+{% block styles %}
+<style>
+  body { background: #0f0f11; }
+  .public-shell { height: 100vh; display: grid; grid-template-rows: 48px minmax(0, 1fr); }
+  .public-bar { display: flex; align-items: center; gap: 10px; padding: 0 14px; background: #18181b; color: #fafafa; border-bottom: 1px solid #27272a; font-size: 12px; }
+  .public-bar .logo-mark { width: 24px; height: 24px; border-radius: 7px; }
+  .public-bar .muted { color: #a1a1aa; font-size: 11px; }
+  .public-bar a { color: #a5b4fc; }
+  .public-bar a:hover { color: #c7d2fe; }
+  .public-stage { position: relative; overflow: hidden; background: #e9e9ec; }
+  .public-stage iframe { display: block; width: 100%; height: 100%; border: 0; background: #fff; }
+  .public-empty { display: grid; place-items: center; height: 100%; background: #f7f7f8; color: #52525b; text-align: center; padding: 32px; }
+  .public-empty h1 { color: #18181b; font-size: 22px; margin-bottom: 8px; }
+  .public-empty p { font-size: 14px; max-width: 420px; line-height: 1.6; }
+  .public-empty .logo-mark { width: 38px; height: 38px; margin: 0 auto 16px; border-radius: 10px; }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="public-shell">
+  <header class="public-bar">
+    <span class="logo-mark"><svg class="icon" style="width:15px;height:15px"><use href="{% static 'icons.svg' %}#i-logo"></use></svg></span>
+    <strong>{{ project.title }}</strong>
+    <span class="muted">публичное превью · только чтение</span>
+    <div class="spacer"></div>
+    {% if project.exported_html %}
+      <a href="{% url 'public_raw' project.slug %}" target="_blank" rel="noopener">Открыть страницу отдельно</a>
+    {% endif %}
+  </header>
+  <div class="public-stage">
+    {% if project.exported_html %}
+      <iframe src="{% url 'public_raw' project.slug %}" sandbox="allow-scripts allow-popups" title="{{ project.title }}"></iframe>
+    {% else %}
+      <div class="public-empty">
+        <div>
+          <span class="logo-mark"><svg class="icon"><use href="{% static 'icons.svg' %}#i-logo"></use></svg></span>
+          <h1>Страница ещё не опубликована</h1>
+          <p>Откройте проект в редакторе и нажмите «Экспорт» — после сохранения здесь появится актуальная версия.</p>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,1812 @@
+[
+  {
+    "model": "builder.template",
+    "pk": 1,
+    "fields": {
+      "title": "Лендинг «Аврора»",
+      "slug": "landing",
+      "description": "Тёмный hero, блок услуг и призыв к действию. Для студии или продукта.",
+      "data": {
+        "version": 1,
+        "meta": {
+          "title": "Аврора — цифровые продукты",
+          "description": "Студия стратегии, дизайна и разработки сайтов.",
+          "lang": "ru"
+        },
+        "settings": {
+          "width": 1200,
+          "bg": "#ffffff",
+          "font": "system"
+        },
+        "sections": [
+          {
+            "id": "s_ae1a2316",
+            "name": "Hero",
+            "height": 760,
+            "bg": "#0B1020",
+            "elements": [
+              {
+                "id": "e_c5388846",
+                "type": "text",
+                "name": "Надпись",
+                "x": 120,
+                "y": 96,
+                "w": 360,
+                "h": 28,
+                "z": 1,
+                "rotation": 0,
+                "locked": false,
+                "hidden": false,
+                "props": {
+                  "text": "ЦИФРОВАЯ СТУДИЯ · 2026",
+                  "href": ""
+                },
+                "style": {
+                  "fontSize": 13,
+                  "fontWeight": 600,
+                  "letterSpacing": 2,
+                  "color": "#818CF8"
+                }
+              },
+              {
+                "id": "e_33fd8dbf",
+                "type": "heading",
+                "name": "Заголовок",
+                "x": 120,
+                "y": 148,
+                "w": 700,
+                "h": 224,
+                "z": 2,
+                "rotation": 0,
+                "locked": false,
+                "hidden": false,
+                "props": {
+                  "text": "Создаём цифровые продукты, которые работают",
+                  "href": ""
+                },
+                "style": {
+                  "fontSize": 64,
+                  "fontWeight": 700,
+                  "lineHeight": 1.1,
+                  "color": "#FFFFFF"
+                }
+              },
+              {
+                "id": "e_e56f1bb9",
+                "type": "text",
+                "name": "Описание",
+                "x": 120,
+                "y": 396,
+                "w": 500,
+                "h": 84,
+                "z": 3,
+                "rotation": 0,
+                "locked": false,
+                "hidden": false,
+                "props": {
+                  "text": "Стратегия, дизайн и разработка сайтов для компаний, которым важно выделяться.",
+                  "href": ""
+                },
+                "style": {
+                  "fontSize": 20,
+                  "lineHeight": 1.5,
+                  "color": "#CBD5E1"
+                }
+              },
+              {
+                "id": "e_e26c8728",
+                "type": "button",
+                "name": "Кнопка",
+                "x": 120,
+                "y": 516,
+                "w": 220,
+                "h": 58,
+                "z": 4,
+                "rotation": 0,
+                "locked": false,
+                "hidden": false,
+                "props": {
+                  "text": "Обсудить проект",
+                  "href": "#contact"
+                },
+                "style": {
+                  "fontSize": 16,
+                  "fontWeight": 600,
+                  "color": "#FFFFFF",
+                  "fill": "#4F46E5",
+                  "borderRadius": 12,
+                  "borderWidth": 0
+                }
+              },
+              {
+                "id": "e_fed48e39",
+                "type": "button",
+                "name": "Кнопка 2",
+                "x": 360,
+                "y": 516,
+                "w": 210,
+                "h": 58,
+                "z": 5,
+                "rotation": 0,
+                "locked": false,
+                "hidden": false,
+                "props": {
+                  "text": "Смотреть работы",
+                  "href": "#works"
+                },
+                "style": {
+                  "fontSize": 16,
+                  "fontWeight": 600,
+                  "color": "#FFFFFF",
+                  "fill": "transparent",
+                  "borderRadius": 12,
+                  "borderWidth": 1,
+                  "borderColor": "#334155"
+                }
+              },
+              {
+                "id": "e_8830a0a9",
+                "type": "shape",
+                "name": "Фигура",
+                "x": 728,
+                "y": 130,
+                "w": 344,
+                "h": 460,
+                "z": 6,
+                "rotation": -3,
+                "locked": false,
+                "hidden": false,
+                "props": {
+                  "shape": "rectangle"
+                },
+                "style": {
+                  "fill": "linear-gradient(145deg,#4F46E5,#9333EA)",
+                  "borderRadius": 28,
+                  "opacity": 1,
+                  "boxShadow": "0 24px 60px rgba(15,23,42,.16)"
+                }
+              },
+              {
+                "id": "e_93e98cf7",
+                "type": "shape",
+                "name": "Круг",
+                "x": 672,
+                "y": 430,
+                "w": 120,
+                "h": 120,
+                "z": 7,
+                "rotation": 0,
+                "locked": false,
+                "hidden": false,
+                "props": {
+                  "shape": "ellipse"
+                },
+                "style": {
+                  "fill": "#22D3EE",
+                  "borderRadius": 999,
+                  "opacity": 0.9
+                }
+              },
+              {
+                "id": "e_d473ca41",
+                "type": "shape",
+                "name": "Квадрат",
+                "x": 1016,
+                "y": 104,
+                "w": 70,
+                "h": 70,
+                "z": 8,
+                "rotation": 18,
+                "locked": false,
+                "hidden": false,
+                "props": {
+                  "shape": "rectangle"
+                },
+                "style": {
+                  "fill": "#F59E0B",
+                  "borderRadius": 16
+                }
+              },
+              {
+                "id": "e_fa538dc9",
+                "type": "text",
+                "name": "Подсказка",
+                "x": 120,
+                "y": 660,
+                "w": 240,
+                "h": 24,
+                "z": 9,
+                "rotation": 0,
+                "locked": false,
+                "hidden": false,
+                "props": {
+                  "text": "Листайте вниз ↓",
+                  "href": ""
+                },
+                "style": {
+                  "fontSize": 13,
+                  "color": "#64748B"
+                }
+              }
+            ]
+          },
+          {
+            "id": "s_35316e03",
+            "name": "Услуги",
+            "height": 620,
+            "bg": "#F7F7F8",
+            "elements": [
+              {
+                "id": "e_3715cbe5",
+                "type": "heading",
+                "name": "Заголовок",
+                "x": 120,
+                "y": 74,
+                "w": 960,
+                "h": 56,
+                "z": 1,
+                "rotation": 0,
+                "locked": false,
+                "hidden": false,
+                "props": {
+                  "text": "Что мы делаем",
+                  "href": ""
+                },
+                "style": {
+                  "fontSize": 40,
+                  "fontWeight": 700,
+                  "color": "#18181B",
+                  "textAlign": "center"
+                }
+              },
+              {
+                "id": "e_261063c5",
+                "type": "text",
+                "name": "Подзаголовок",
+                "x": 300,
+                "y": 140,
+                "w": 600,
+                "h": 30,
+                "z": 2,
+                "rotation": 0,
+                "locked": false,
+                "hidden": false,
+                "props": {
+                  "text": "Три направления, которые закрывают путь от идеи до запуска",
+                  "href": ""
+                },
+                "style": {
+                  "fontSize": 17,
+                  "color": "#71717A",
+                  "textAlign": "center"
+                }
+              },
+              {
+                "id": "e_e1ebee59",
+                "type": "shape",
+                "name": "Карточка",
+                "x": 120,
+                "y": 240,
+                "w": 280,
+                "h": 280,
+                "z": 10,
+                "rotation": 0,
+                "locked": false,
+                "hidden": false,
+                "props": {
+                  "shape": "rectangle"
+                },
+                "style": {
+                  "fill": "#FFFFFF",
+                  "borderRadius": 20,
+                  "boxShadow": "0 10px 30px rgba(15,23,42,.08)"
+                }
+              },
+              {
+                "id": "e_e182f1a7",
+                "type": "text",
+                "name": "Номер",
+                "x": 152,
+                "y": 272,
+                "w": 80,
+                "h": 20,
+                "z": 11,
+                "rotation": 0,
+                "locked": false,
+                "hidden": false,
+                "props": {
+                  "text": "01",
+                  "href": ""
+                },
+                "style": {
+                  "fontSize": 13,
+                  "fontWeight": 700,
+                  "color": "#4F46E5",
+                  "letterSpacing": 1
+                }
+              },
+              {
+                "id": "e_a5b17fbc",
+                "type": "heading",
+                "name": "Заголовок карточки",
+                "x": 152,
+                "y": 318,
+                "w": 216,
+                "h": 40,
+                "z": 12,
+                "rotation": 0,
+                "locked": false,
+                "hidden": false,
+                "props": {
+                  "text": "Стратегия",
+                  "href": ""
+                },
+                "style": {
+                  "fontSize": 22,
+                  "fontWeight": 700,
+                  "color": "#18181B"
+                }
+              },
+              {
+                "id": "e_73809a33",
+                "type": "text",
+                "name": "Текст карточки",
+                "x": 152,
+                "y": 380,
+                "w": 216,
+                "h": 100,
+                "z": 13,
+                "rotation": 0,
+                "locked": false,
+                "hidden": false,
+                "props": {
+                  "text": "Исследуем рынок, аудиторию и находим точку, где продукт становится нужным.",
+                  "href": ""
+                },
+                "style": {
+                  "fontSize": 15,
+                  "lineHeight": 1.6,
+                  "color": "#71717A"
+                }
+              },
+              {
+                "id": "e_251ff765",
+                "type": "shape",
+                "name": "Карточка",
+                "x": 460,
+                "y": 240,
+                "w": 280,
+                "h": 280,
+                "z": 20,
+                "rotation": 0,
+                "locked": false,
+                "hidden": false,
+                "props": {
+                  "shape": "rectangle"
+                },
+                "style": {
+                  "fill": "#FFFFFF",
+                  "borderRadius": 20,
+                  "boxShadow": "0 10px 30px rgba(15,23,42,.08)"
+                }
+              },
+              {
+                "id": "e_5800c8f9",
+                "type": "text",
+                "name": "Номер",
+                "x": 492,
+                "y": 272,
+                "w": 80,
+                "h": 20,
+                "z": 21,
+                "rotation": 0,
+                "locked": false,
+                "hidden": false,
+                "props": {
+                  "text": "02",
+                  "href": ""
+                },
+                "style": {
+                  "fontSize": 13,
+                  "fontWeight": 700,
+                  "color": "#4F46E5",
+                  "letterSpacing": 1
+                }
+              },
+              {
+                "id": "e_83547ba9",
+                "type": "heading",
+                "name": "Заголовок карточки",
+                "x": 492,
+                "y": 318,
+                "w": 216,
+                "h": 40,
+                "z": 22,
+                "rotation": 0,
+                "locked": false,
+                "hidden": false,
+                "props": {
+                  "text": "Дизайн",
+                  "href": ""
+                },
+                "style": {
+                  "fontSize": 22,
+                  "fontWeight": 700,
+                  "color": "#18181B"
+                }
+              },
+              {
+                "id": "e_5c4813fe",
+                "type": "text",
+                "name": "Текст карточки",
+                "x": 492,
+                "y": 380,
+                "w": 216,
+                "h": 100,
+                "z": 23,
+                "rotation": 0,
+                "locked": false,
+                "hidden": false,
+                "props": {
+                  "text": "Собираем интерфейс, который понятен без инструкций и приятен в деталях.",
+                  "href": ""
+                },
+                "style": {
+                  "fontSize": 15,
+                  "lineHeight": 1.6,
+                  "color": "#71717A"
+                }
+              },
+              {
+                "id": "e_524e264a",
+                "type": "shape",
+                "name": "Карточка",
+                "x": 800,
+                "y": 240,
+                "w": 280,
+                "h": 280,
+                "z": 30,
+                "rotation": 0,
+                "locked": false,
+                "hidden": false,
+                "props": {
+                  "shape": "rectangle"
+                },
+                "style": {
+                  "fill": "#FFFFFF",
+                  "borderRadius": 20,
+                  "boxShadow": "0 10px 30px rgba(15,23,42,.08)"
+                }
+              },
+              {
+                "id": "e_c3ba07fa",
+                "type": "text",
+                "name": "Номер",
+                "x": 832,
+                "y": 272,
+                "w": 80,
+                "h": 20,
+                "z": 31,
+                "rotation": 0,
+                "locked": false,
+                "hidden": false,
+                "props": {
+                  "text": "03",
+                  "href": ""
+                },
+                "style": {
+                  "fontSize": 13,
+                  "fontWeight": 700,
+                  "color": "#4F46E5",
+                  "letterSpacing": 1
+                }
+              },
+              {
+                "id": "e_95ab88f3",
+                "type": "heading",
+                "name": "Заголовок карточки",
+                "x": 832,
+                "y": 318,
+                "w": 216,
+                "h": 40,
+                "z": 32,
+                "rotation": 0,
+                "locked": false,
+                "hidden": false,
+                "props": {
+                  "text": "Разработка",
+                  "href": ""
+                },
+                "style": {
+                  "fontSize": 22,
+                  "fontWeight": 700,
+                  "color": "#18181B"
+                }
+              },
+              {
+                "id": "e_85921922",
+                "type": "text",
+                "name": "Текст карточки",
+                "x": 832,
+                "y": 380,
+                "w": 216,
+                "h": 100,
+                "z": 33,
+                "rotation": 0,
+                "locked": false,
+                "hidden": false,
+                "props": {
+                  "text": "Пишем быстрый и аккуратный код, запускаем и поддерживаем продукт.",
+                  "href": ""
+                },
+                "style": {
+                  "fontSize": 15,
+                  "lineHeight": 1.6,
+                  "color": "#71717A"
+                }
+              }
+            ]
+          },
+          {
+            "id": "s_cd2d8de3",
+            "name": "Призыв",
+            "height": 380,
+            "bg": "#4F46E5",
+            "elements": [
+              {
+                "id": "e_b7b6abec",
+                "type": "heading",
+                "name": "Заголовок",
+                "x": 140,
+                "y": 82,
+                "w": 920,
+                "h": 90,
+                "z": 1,
+                "rotation": 0,
+                "locked": false,
+                "hidden": false,
+                "props": {
+                  "text": "Давайте сделаем что-то заметное",
+                  "href": ""
+                },
+                "style": {
+                  "fontSize": 44,
+                  "fontWeight": 700,
+                  "color": "#FFFFFF",
+                  "textAlign": "center"
+                }
+              },
+              {
+                "id": "e_3ba1b52b",
+                "type": "text",
+                "name": "Текст",
+                "x": 260,
+                "y": 194,
+                "w": 680,
+                "h": 34,
+                "z": 2,
+                "rotation": 0,
+                "locked": false,
+                "hidden": false,
+                "props": {
+                  "text": "Расскажите о задаче — ответим в течение дня.",
+                  "href": ""
+                },
+                "style": {
+                  "fontSize": 18,
+                  "color": "#E0E7FF",
+                  "textAlign": "center"
+                }
+              },
+              {
+                "id": "e_e3f022e6",
+                "type": "button",
+                "name": "Кнопка",
+                "x": 500,
+                "y": 268,
+                "w": 200,
+                "h": 56,
+                "z": 3,
+                "rotation": 0,
+                "locked": false,
+                "hidden": false,
+                "props": {
+                  "text": "Написать нам",
+                  "href": "mailto:hello@aurora.studio"
+                },
+                "style": {
+                  "fontSize": 16,
+                  "fontWeight": 600,
+                  "color": "#4F46E5",
+                  "fill": "#FFFFFF",
+                  "borderRadius": 12,
+                  "borderWidth": 0
+                }
+              }
+            ]
+          },
+          {
+            "id": "s_6ea45ee8",
+            "name": "Подвал",
+            "height": 180,
+            "bg": "#0B1020",
+            "elements": [
+              {
+                "id": "e_d94fd388",
+                "type": "text",
+                "name": "Копирайт",
+                "x": 120,
+                "y": 78,
+                "w": 400,
+                "h": 24,
+                "z": 1,
+                "rotation": 0,
+                "locked": false,
+                "hidden": false,
+                "props": {
+                  "text": "© 2026 Аврора. Все права защищены.",
+                  "href": ""
+                },
+                "style": {
+                  "fontSize": 14,
+                  "color": "#94A3B8"
+                }
+              },
+              {
+                "id": "e_d3a26ee9",
+                "type": "text",
+                "name": "Почта",
+                "x": 740,
+                "y": 78,
+                "w": 340,
+                "h": 24,
+                "z": 2,
+                "rotation": 0,
+                "locked": false,
+                "hidden": false,
+                "props": {
+                  "text": "hello@aurora.studio",
+                  "href": "mailto:hello@aurora.studio"
+                },
+                "style": {
+                  "fontSize": 14,
+                  "color": "#94A3B8",
+                  "textAlign": "right"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "sort_order": 1
+    }
+  },
+  {
+    "model": "builder.template",
+    "pk": 2,
+    "fields": {
+      "title": "Портфолио «Кадр»",
+      "slug": "portfolio",
+      "description": "Светлая типографика, сетка работ и блок о себе. Для дизайнера.",
+      "data": {
+        "version": 1,
+        "meta": {
+          "title": "Кадр — портфолио дизайнера",
+          "description": "Портфолио независимого дизайнера: айдентика, сайты и упаковка.",
+          "lang": "ru"
+        },
+        "settings": {
+          "width": 1200,
+          "bg": "#ffffff",
+          "font": "system"
+        },
+        "sections": [
+          {
+            "id": "s_a1307ed1",
+            "name": "Hero",
+            "height": 700,
+            "bg": "#F4F1EA",
+            "elements": [
+              {
+                "id": "e_aafffb04",
+                "type": "text",
+                "name": "Надпись",
+                "x": 120,
+                "y": 92,
+                "w": 340,
+                "h": 24,
+                "z": 1,
+                "rotation": 0,
+                "locked": false,
+                "hidden": false,
+                "props": {
+                  "text": "ПОРТФОЛИО · 2024–2026",
+                  "href": ""
+                },
+                "style": {
+                  "fontSize": 13,
+                  "fontWeight": 600,
+                  "letterSpacing": 2,
+                  "color": "#71717A"
+                }
+              },
+              {
+                "id": "e_f28aabe1",
+                "type": "heading",
+                "name": "Заголовок",
+                "x": 120,
+                "y": 142,
+                "w": 720,
+                "h": 268,
+                "z": 2,
+                "rotation": 0,
+                "locked": false,
+                "hidden": false,
+                "props": {
+                  "text": "Дизайн,\nкоторый запоминается",
+                  "href": ""
+                },
+                "style": {
+                  "fontSize": 72,
+                  "fontWeight": 700,
+                  "lineHeight": 1.05,
+                  "color": "#18181B"
+                }
+              },
+              {
+                "id": "e_7d3c506a",
+                "type": "text",
+                "name": "Описание",
+                "x": 120,
+                "y": 440,
+                "w": 470,
+                "h": 76,
+                "z": 3,
+                "rotation": 0,
+                "locked": false,
+                "hidden": false,
+                "props": {
+                  "text": "Создаю айдентику и интерфейсы для брендов, которым важно говорить своим голосом.",
+                  "href": ""
+                },
+                "style": {
+                  "fontSize": 19,
+                  "lineHeight": 1.5,
+                  "color": "#52525B"
+                }
+              },
+              {
+                "id": "e_336dc72a",
+                "type": "button",
+                "name": "Кнопка",
+                "x": 120,
+                "y": 552,
+                "w": 220,
+                "h": 56,
+                "z": 4,
+                "rotation": 0,
+                "locked": false,
+                "hidden": false,
+                "props": {
+                  "text": "Смотреть проекты",
+                  "href": "#works"
+                },
+                "style": {
+                  "fontSize": 15,
+                  "fontWeight": 600,
+                  "color": "#FFFFFF",
+                  "fill": "#18181B",
+                  "borderRadius": 999,
+                  "borderWidth": 0
+                }
+              },
+              {
+                "id": "e_f3292cca",
+                "type": "shape",
+                "name": "Круг",
+                "x": 812,
+                "y": 112,
+                "w": 264,
+                "h": 264,
+                "z": 5,
+                "rotation": 0,
+                "locked": false,
+                "hidden": false,
+                "props": {
+                  "shape": "ellipse"
+                },
+                "style": {
+                  "fill": "#4F46E5",
+                  "borderRadius": 999,
+                  "boxShadow": "0 24px 60px rgba(15,23,42,.16)"
+                }
+              },
+              {
+                "id": "e_e301e90a",
+                "type": "shape",
+                "name": "Прямоугольник",
+                "x": 828,
+                "y": 382,
+                "w": 248,
+                "h": 176,
+                "z": 6,
+                "rotation": 6,
+                "locked": false,
+                "hidden": false,
+                "props": {
+                  "shape": "rectangle"
+                },
+                "style": {
+                  "fill": "#F59E0B",
+                  "borderRadius": 24
+                }
+              },
+              {
+                "id": "e_d89a9518",
+                "type": "text",
+                "name": "Город",
+                "x": 120,
+                "y": 640,
+                "w": 300,
+                "h": 24,
+                "z": 7,
+                "rotation": 0,
+                "locked": false,
+                "hidden": false,
+                "props": {
+                  "text": "Санкт-Петербург",
+                  "href": ""
+                },
+                "style": {
+                  "fontSize": 13,
+                  "color": "#71717A"
+                }
+              }
+            ]
+          },
+          {
+            "id": "s_bf6bd820",
+            "name": "Работы",
+            "height": 790,
+            "bg": "#FFFFFF",
+            "elements": [
+              {
+                "id": "e_e40f5c76",
+                "type": "heading",
+                "name": "Заголовок",
+                "x": 120,
+                "y": 58,
+                "w": 700,
+                "h": 56,
+                "z": 1,
+                "rotation": 0,
+                "locked": false,
+                "hidden": false,
+                "props": {
+                  "text": "Избранные работы",
+                  "href": ""
+                },
+                "style": {
+                  "fontSize": 40,
+                  "fontWeight": 700,
+                  "color": "#18181B"
+                }
+              },
+              {
+                "id": "e_171438d5",
+                "type": "shape",
+                "name": "Карточка",
+                "x": 120,
+                "y": 180,
+                "w": 460,
+                "h": 260,
+                "z": 1,
+                "rotation": 0,
+                "locked": false,
+                "hidden": false,
+                "props": {
+                  "shape": "rectangle"
+                },
+                "style": {
+                  "fill": "#E0E7FF",
+                  "borderRadius": 20
+                }
+              },
+              {
+                "id": "e_a6083d4b",
+                "type": "shape",
+                "name": "Акцент",
+                "x": 420,
+                "y": 228,
+                "w": 110,
+                "h": 110,
+                "z": 2,
+                "rotation": 0,
+                "locked": false,
+                "hidden": false,
+                "props": {
+                  "shape": "ellipse"
+                },
+                "style": {
+                  "fill": "#4F46E5",
+                  "borderRadius": 999,
+                  "opacity": 0.9
+                }
+              },
+              {
+                "id": "e_61b33977",
+                "type": "text",
+                "name": "Номер",
+                "x": 148,
+                "y": 208,
+                "w": 60,
+                "h": 20,
+                "z": 3,
+                "rotation": 0,
+                "locked": false,
+                "hidden": false,
+                "props": {
+                  "text": "01",
+                  "href": ""
+                },
+                "style": {
+                  "fontSize": 12,
+                  "fontWeight": 700,
+                  "color": "#4F46E5",
+                  "letterSpacing": 1
+                }
+              },
+              {
+                "id": "e_781b0289",
+                "type": "text",
+                "name": "Подпись",
+                "x": 120,
+                "y": 454,
+                "w": 300,
+                "h": 26,
+                "z": 4,
+                "rotation": 0,
+                "locked": false,
+                "hidden": false,
+                "props": {
+                  "text": "Северный дом",
+                  "href": ""
+                },
+                "style": {
+                  "fontSize": 18,
+                  "fontWeight": 600,
+                  "color": "#18181B"
+                }
+              },
+              {
+                "id": "e_d5aec8a8",
+                "type": "text",
+                "name": "Категория",
+                "x": 420,
+                "y": 454,
+                "w": 160,
+                "h": 26,
+                "z": 5,
+                "rotation": 0,
+                "locked": false,
+                "hidden": false,
+                "props": {
+                  "text": "Айдентика · 2026",
+                  "href": ""
+                },
+                "style": {
+                  "fontSize": 14,
+                  "color": "#71717A",
+                  "textAlign": "right"
+                }
+              },
+              {
+                "id": "e_e845a015",
+                "type": "shape",
+                "name": "Карточка",
+                "x": 620,
+                "y": 180,
+                "w": 460,
+                "h": 260,
+                "z": 11,
+                "rotation": 0,
+                "locked": false,
+                "hidden": false,
+                "props": {
+                  "shape": "rectangle"
+                },
+                "style": {
+                  "fill": "#FCE7F3",
+                  "borderRadius": 20
+                }
+              },
+              {
+                "id": "e_8bee9989",
+                "type": "shape",
+                "name": "Акцент",
+                "x": 920,
+                "y": 228,
+                "w": 110,
+                "h": 110,
+                "z": 12,
+                "rotation": 0,
+                "locked": false,
+                "hidden": false,
+                "props": {
+                  "shape": "ellipse"
+                },
+                "style": {
+                  "fill": "#DB2777",
+                  "borderRadius": 999,
+                  "opacity": 0.9
+                }
+              },
+              {
+                "id": "e_0e3cc5b7",
+                "type": "text",
+                "name": "Номер",
+                "x": 648,
+                "y": 208,
+                "w": 60,
+                "h": 20,
+                "z": 13,
+                "rotation": 0,
+                "locked": false,
+                "hidden": false,
+                "props": {
+                  "text": "02",
+                  "href": ""
+                },
+                "style": {
+                  "fontSize": 12,
+                  "fontWeight": 700,
+                  "color": "#DB2777",
+                  "letterSpacing": 1
+                }
+              },
+              {
+                "id": "e_8e561621",
+                "type": "text",
+                "name": "Подпись",
+                "x": 620,
+                "y": 454,
+                "w": 300,
+                "h": 26,
+                "z": 14,
+                "rotation": 0,
+                "locked": false,
+                "hidden": false,
+                "props": {
+                  "text": "Тише",
+                  "href": ""
+                },
+                "style": {
+                  "fontSize": 18,
+                  "fontWeight": 600,
+                  "color": "#18181B"
+                }
+              },
+              {
+                "id": "e_12e0c747",
+                "type": "text",
+                "name": "Категория",
+                "x": 920,
+                "y": 454,
+                "w": 160,
+                "h": 26,
+                "z": 15,
+                "rotation": 0,
+                "locked": false,
+                "hidden": false,
+                "props": {
+                  "text": "Сайт · 2025",
+                  "href": ""
+                },
+                "style": {
+                  "fontSize": 14,
+                  "color": "#71717A",
+                  "textAlign": "right"
+                }
+              },
+              {
+                "id": "e_42e8dac4",
+                "type": "shape",
+                "name": "Карточка",
+                "x": 120,
+                "y": 486,
+                "w": 460,
+                "h": 260,
+                "z": 21,
+                "rotation": 0,
+                "locked": false,
+                "hidden": false,
+                "props": {
+                  "shape": "rectangle"
+                },
+                "style": {
+                  "fill": "#DCFCE7",
+                  "borderRadius": 20
+                }
+              },
+              {
+                "id": "e_f6fcbbf6",
+                "type": "shape",
+                "name": "Акцент",
+                "x": 420,
+                "y": 534,
+                "w": 110,
+                "h": 110,
+                "z": 22,
+                "rotation": 0,
+                "locked": false,
+                "hidden": false,
+                "props": {
+                  "shape": "ellipse"
+                },
+                "style": {
+                  "fill": "#16A34A",
+                  "borderRadius": 999,
+                  "opacity": 0.9
+                }
+              },
+              {
+                "id": "e_e8faf3e9",
+                "type": "text",
+                "name": "Номер",
+                "x": 148,
+                "y": 514,
+                "w": 60,
+                "h": 20,
+                "z": 23,
+                "rotation": 0,
+                "locked": false,
+                "hidden": false,
+                "props": {
+                  "text": "03",
+                  "href": ""
+                },
+                "style": {
+                  "fontSize": 12,
+                  "fontWeight": 700,
+                  "color": "#16A34A",
+                  "letterSpacing": 1
+                }
+              },
+              {
+                "id": "e_359ab53f",
+                "type": "text",
+                "name": "Подпись",
+                "x": 120,
+                "y": 760,
+                "w": 300,
+                "h": 26,
+                "z": 24,
+                "rotation": 0,
+                "locked": false,
+                "hidden": false,
+                "props": {
+                  "text": "Поле",
+                  "href": ""
+                },
+                "style": {
+                  "fontSize": 18,
+                  "fontWeight": 600,
+                  "color": "#18181B"
+                }
+              },
+              {
+                "id": "e_730dc6c7",
+                "type": "text",
+                "name": "Категория",
+                "x": 420,
+                "y": 760,
+                "w": 160,
+                "h": 26,
+                "z": 25,
+                "rotation": 0,
+                "locked": false,
+                "hidden": false,
+                "props": {
+                  "text": "Упаковка · 2025",
+                  "href": ""
+                },
+                "style": {
+                  "fontSize": 14,
+                  "color": "#71717A",
+                  "textAlign": "right"
+                }
+              },
+              {
+                "id": "e_669c27ce",
+                "type": "shape",
+                "name": "Карточка",
+                "x": 620,
+                "y": 486,
+                "w": 460,
+                "h": 260,
+                "z": 31,
+                "rotation": 0,
+                "locked": false,
+                "hidden": false,
+                "props": {
+                  "shape": "rectangle"
+                },
+                "style": {
+                  "fill": "#FEF3C7",
+                  "borderRadius": 20
+                }
+              },
+              {
+                "id": "e_7563c69a",
+                "type": "shape",
+                "name": "Акцент",
+                "x": 920,
+                "y": 534,
+                "w": 110,
+                "h": 110,
+                "z": 32,
+                "rotation": 0,
+                "locked": false,
+                "hidden": false,
+                "props": {
+                  "shape": "ellipse"
+                },
+                "style": {
+                  "fill": "#D97706",
+                  "borderRadius": 999,
+                  "opacity": 0.9
+                }
+              },
+              {
+                "id": "e_f11da998",
+                "type": "text",
+                "name": "Номер",
+                "x": 648,
+                "y": 514,
+                "w": 60,
+                "h": 20,
+                "z": 33,
+                "rotation": 0,
+                "locked": false,
+                "hidden": false,
+                "props": {
+                  "text": "04",
+                  "href": ""
+                },
+                "style": {
+                  "fontSize": 12,
+                  "fontWeight": 700,
+                  "color": "#D97706",
+                  "letterSpacing": 1
+                }
+              },
+              {
+                "id": "e_66ddab90",
+                "type": "text",
+                "name": "Подпись",
+                "x": 620,
+                "y": 760,
+                "w": 300,
+                "h": 26,
+                "z": 34,
+                "rotation": 0,
+                "locked": false,
+                "hidden": false,
+                "props": {
+                  "text": "Точка",
+                  "href": ""
+                },
+                "style": {
+                  "fontSize": 18,
+                  "fontWeight": 600,
+                  "color": "#18181B"
+                }
+              },
+              {
+                "id": "e_0517b17a",
+                "type": "text",
+                "name": "Категория",
+                "x": 920,
+                "y": 760,
+                "w": 160,
+                "h": 26,
+                "z": 35,
+                "rotation": 0,
+                "locked": false,
+                "hidden": false,
+                "props": {
+                  "text": "Интерфейс · 2024",
+                  "href": ""
+                },
+                "style": {
+                  "fontSize": 14,
+                  "color": "#71717A",
+                  "textAlign": "right"
+                }
+              }
+            ]
+          },
+          {
+            "id": "s_1360dfdf",
+            "name": "О себе",
+            "height": 440,
+            "bg": "#18181B",
+            "elements": [
+              {
+                "id": "e_72a8046e",
+                "type": "heading",
+                "name": "Заголовок",
+                "x": 120,
+                "y": 76,
+                "w": 540,
+                "h": 150,
+                "z": 1,
+                "rotation": 0,
+                "locked": false,
+                "hidden": false,
+                "props": {
+                  "text": "Небольшая команда с большим вниманием к деталям",
+                  "href": ""
+                },
+                "style": {
+                  "fontSize": 38,
+                  "fontWeight": 700,
+                  "lineHeight": 1.15,
+                  "color": "#FFFFFF"
+                }
+              },
+              {
+                "id": "e_92b9cf1f",
+                "type": "text",
+                "name": "Текст",
+                "x": 120,
+                "y": 258,
+                "w": 470,
+                "h": 110,
+                "z": 2,
+                "rotation": 0,
+                "locked": false,
+                "hidden": false,
+                "props": {
+                  "text": "Работаю с брендами с 2014 года. Верю в простые решения и честный дизайн без лишнего шума.",
+                  "href": ""
+                },
+                "style": {
+                  "fontSize": 17,
+                  "lineHeight": 1.7,
+                  "color": "#A1A1AA"
+                }
+              },
+              {
+                "id": "e_6ff925ce",
+                "type": "heading",
+                "name": "Статистика",
+                "x": 760,
+                "y": 106,
+                "w": 300,
+                "h": 70,
+                "z": 3,
+                "rotation": 0,
+                "locked": false,
+                "hidden": false,
+                "props": {
+                  "text": "12+",
+                  "href": ""
+                },
+                "style": {
+                  "fontSize": 56,
+                  "fontWeight": 700,
+                  "color": "#818CF8"
+                }
+              },
+              {
+                "id": "e_c263b8eb",
+                "type": "text",
+                "name": "Подпись",
+                "x": 760,
+                "y": 180,
+                "w": 300,
+                "h": 24,
+                "z": 4,
+                "rotation": 0,
+                "locked": false,
+                "hidden": false,
+                "props": {
+                  "text": "лет в дизайне",
+                  "href": ""
+                },
+                "style": {
+                  "fontSize": 14,
+                  "color": "#A1A1AA"
+                }
+              },
+              {
+                "id": "e_db2ba227",
+                "type": "heading",
+                "name": "Статистика 2",
+                "x": 760,
+                "y": 236,
+                "w": 300,
+                "h": 70,
+                "z": 5,
+                "rotation": 0,
+                "locked": false,
+                "hidden": false,
+                "props": {
+                  "text": "84",
+                  "href": ""
+                },
+                "style": {
+                  "fontSize": 56,
+                  "fontWeight": 700,
+                  "color": "#22D3EE"
+                }
+              },
+              {
+                "id": "e_e29ca507",
+                "type": "text",
+                "name": "Подпись 2",
+                "x": 760,
+                "y": 310,
+                "w": 300,
+                "h": 24,
+                "z": 6,
+                "rotation": 0,
+                "locked": false,
+                "hidden": false,
+                "props": {
+                  "text": "запущенных проекта",
+                  "href": ""
+                },
+                "style": {
+                  "fontSize": 14,
+                  "color": "#A1A1AA"
+                }
+              }
+            ]
+          },
+          {
+            "id": "s_10fadf8a",
+            "name": "Призыв",
+            "height": 320,
+            "bg": "#4F46E5",
+            "elements": [
+              {
+                "id": "e_761c0bbb",
+                "type": "heading",
+                "name": "Заголовок",
+                "x": 140,
+                "y": 72,
+                "w": 920,
+                "h": 70,
+                "z": 1,
+                "rotation": 0,
+                "locked": false,
+                "hidden": false,
+                "props": {
+                  "text": "Расскажите о своём проекте",
+                  "href": ""
+                },
+                "style": {
+                  "fontSize": 42,
+                  "fontWeight": 700,
+                  "color": "#FFFFFF",
+                  "textAlign": "center"
+                }
+              },
+              {
+                "id": "e_a499acb3",
+                "type": "button",
+                "name": "Кнопка",
+                "x": 500,
+                "y": 184,
+                "w": 200,
+                "h": 56,
+                "z": 2,
+                "rotation": 0,
+                "locked": false,
+                "hidden": false,
+                "props": {
+                  "text": "Написать",
+                  "href": "mailto:hi@kadr.studio"
+                },
+                "style": {
+                  "fontSize": 16,
+                  "fontWeight": 600,
+                  "color": "#4F46E5",
+                  "fill": "#FFFFFF",
+                  "borderRadius": 999,
+                  "borderWidth": 0
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "sort_order": 2
+    }
+  },
+  {
+    "model": "builder.template",
+    "pk": 3,
+    "fields": {
+      "title": "Визитка «Ноябрь»",
+      "slug": "business-card",
+      "description": "Одна страница-визитка с градиентом и контактами. Для small business.",
+      "data": {
+        "version": 1,
+        "meta": {
+          "title": "Ноябрь — визитка студии",
+          "description": "Визитная карточка студии дизайна и разработки «Ноябрь».",
+          "lang": "ru"
+        },
+        "settings": {
+          "width": 1200,
+          "bg": "#ffffff",
+          "font": "system"
+        },
+        "sections": [
+          {
+            "id": "s_7d8658cc",
+            "name": "Визитка",
+            "height": 720,
+            "bg": "linear-gradient(135deg,#111827,#312E81)",
+            "elements": [
+              {
+                "id": "e_126bcef0",
+                "type": "shape",
+                "name": "Круг",
+                "x": 740,
+                "y": 120,
+                "w": 360,
+                "h": 360,
+                "z": 1,
+                "rotation": 0,
+                "locked": false,
+                "hidden": false,
+                "props": {
+                  "shape": "ellipse"
+                },
+                "style": {
+                  "fill": "linear-gradient(135deg,#4F46E5,#22D3EE)",
+                  "borderRadius": 999,
+                  "opacity": 0.85
+                }
+              },
+              {
+                "id": "e_221b8aa0",
+                "type": "shape",
+                "name": "Кольцо",
+                "x": 800,
+                "y": 430,
+                "w": 180,
+                "h": 180,
+                "z": 2,
+                "rotation": 0,
+                "locked": false,
+                "hidden": false,
+                "props": {
+                  "shape": "ellipse"
+                },
+                "style": {
+                  "fill": "transparent",
+                  "borderWidth": 1,
+                  "borderColor": "#6366F1",
+                  "borderRadius": 999
+                }
+              },
+              {
+                "id": "e_30a1f99b",
+                "type": "text",
+                "name": "Надпись",
+                "x": 110,
+                "y": 106,
+                "w": 340,
+                "h": 24,
+                "z": 3,
+                "rotation": 0,
+                "locked": false,
+                "hidden": false,
+                "props": {
+                  "text": "ВИЗИТНАЯ КАРТОЧКА",
+                  "href": ""
+                },
+                "style": {
+                  "fontSize": 13,
+                  "fontWeight": 600,
+                  "letterSpacing": 3,
+                  "color": "#A5B4FC"
+                }
+              },
+              {
+                "id": "e_74757270",
+                "type": "heading",
+                "name": "Имя",
+                "x": 110,
+                "y": 178,
+                "w": 620,
+                "h": 150,
+                "z": 4,
+                "rotation": 0,
+                "locked": false,
+                "hidden": false,
+                "props": {
+                  "text": "Ноябрь\nи партнёры",
+                  "href": ""
+                },
+                "style": {
+                  "fontSize": 64,
+                  "fontWeight": 700,
+                  "lineHeight": 1.05,
+                  "color": "#FFFFFF"
+                }
+              },
+              {
+                "id": "e_43b9e9c6",
+                "type": "text",
+                "name": "Роль",
+                "x": 110,
+                "y": 334,
+                "w": 440,
+                "h": 30,
+                "z": 5,
+                "rotation": 0,
+                "locked": false,
+                "hidden": false,
+                "props": {
+                  "text": "Студия дизайна и разработки",
+                  "href": ""
+                },
+                "style": {
+                  "fontSize": 20,
+                  "color": "#C7D2FE"
+                }
+              },
+              {
+                "id": "e_62446370",
+                "type": "shape",
+                "name": "Линия",
+                "x": 110,
+                "y": 396,
+                "w": 500,
+                "h": 1,
+                "z": 6,
+                "rotation": 0,
+                "locked": false,
+                "hidden": false,
+                "props": {
+                  "shape": "rectangle"
+                },
+                "style": {
+                  "fill": "#4338CA",
+                  "borderRadius": 0
+                }
+              },
+              {
+                "id": "e_70a05c50",
+                "type": "text",
+                "name": "Контакты",
+                "x": 110,
+                "y": 430,
+                "w": 440,
+                "h": 110,
+                "z": 7,
+                "rotation": 0,
+                "locked": false,
+                "hidden": false,
+                "props": {
+                  "text": "hello@noyabr.ru\n+7 999 120-40-80",
+                  "href": ""
+                },
+                "style": {
+                  "fontSize": 18,
+                  "lineHeight": 1.8,
+                  "color": "#E0E7FF"
+                }
+              },
+              {
+                "id": "e_e2132b21",
+                "type": "button",
+                "name": "Кнопка",
+                "x": 110,
+                "y": 572,
+                "w": 210,
+                "h": 56,
+                "z": 8,
+                "rotation": 0,
+                "locked": false,
+                "hidden": false,
+                "props": {
+                  "text": "Написать",
+                  "href": "mailto:hello@noyabr.ru"
+                },
+                "style": {
+                  "fontSize": 15,
+                  "fontWeight": 600,
+                  "color": "#18181B",
+                  "fill": "#FFFFFF",
+                  "borderRadius": 999,
+                  "borderWidth": 0
+                }
+              }
+            ]
+          },
+          {
+            "id": "s_0fd17cef",
+            "name": "Ссылки",
+            "height": 260,
+            "bg": "#F7F7F8",
+            "elements": [
+              {
+                "id": "e_b93a886d",
+                "type": "text",
+                "name": "Ссылки",
+                "x": 110,
+                "y": 92,
+                "w": 520,
+                "h": 30,
+                "z": 1,
+                "rotation": 0,
+                "locked": false,
+                "hidden": false,
+                "props": {
+                  "text": "Telegram / Behance / Dribbble",
+                  "href": ""
+                },
+                "style": {
+                  "fontSize": 16,
+                  "fontWeight": 600,
+                  "color": "#18181B"
+                }
+              },
+              {
+                "id": "e_e88f3ea9",
+                "type": "text",
+                "name": "Адрес",
+                "x": 760,
+                "y": 92,
+                "w": 330,
+                "h": 30,
+                "z": 2,
+                "rotation": 0,
+                "locked": false,
+                "hidden": false,
+                "props": {
+                  "text": "Санкт-Петербург, наб. реки Мойки, 12",
+                  "href": ""
+                },
+                "style": {
+                  "fontSize": 14,
+                  "color": "#71717A",
+                  "textAlign": "right"
+                }
+              },
+              {
+                "id": "e_dba419a6",
+                "type": "text",
+                "name": "Подпись",
+                "x": 110,
+                "y": 150,
+                "w": 700,
+                "h": 30,
+                "z": 3,
+                "rotation": 0,
+                "locked": false,
+                "hidden": false,
+                "props": {
+                  "text": "Открыты к новым проектам с сентября 2026",
+                  "href": ""
+                },
+                "style": {
+                  "fontSize": 14,
+                  "color": "#71717A"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "sort_order": 3
+    }
+  }
+]

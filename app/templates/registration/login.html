@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Вход — LamoFrame{% endblock %}
+{% block body_class %}auth-body{% endblock %}
+{% block styles %}{% endblock %}
+
+{% block content %}
+<div class="auth">
+  <aside class="auth-visual">
+    <a class="logo" href="/">
+      <span class="logo-mark"><svg class="icon"><use href="{% static 'icons.svg' %}#i-logo"></use></svg></span>
+      LamoFrame
+    </a>
+    <div class="auth-hero">
+      <h1>Соберите сайт на свободном холсте</h1>
+      <p>Перетаскивайте блоки, настраивайте свойства и скачивайте готовый сайт в ZIP. Без кода и без сборки.</p>
+    </div>
+    <div class="auth-art" aria-hidden="true"><span></span><span></span><span></span></div>
+  </aside>
+
+  <main class="auth-form-wrap">
+    <div class="auth-stack">
+      <form class="auth-form" method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        <div>
+          <h2>Вход в редактор</h2>
+          <p class="lead">Продолжите работу над своими проектами.</p>
+        </div>
+
+        {% if form.errors %}
+          <div class="auth-error" role="alert">Неверный логин или пароль. Попробуйте ещё раз.</div>
+        {% endif %}
+        {% if next %}<input type="hidden" name="next" value="{{ next }}">{% endif %}
+
+        <div class="field">
+          <label for="id_username">Логин</label>
+          <input class="input" id="id_username" name="username" autocomplete="username" autofocus required
+                 value="{{ form.username.value|default:'' }}" placeholder="Логин">
+        </div>
+        <div class="field">
+          <label for="id_password">Пароль</label>
+          <input class="input" id="id_password" name="password" type="password" autocomplete="current-password" required
+                 placeholder="••••••••">
+        </div>
+        <button class="btn btn-primary" type="submit" style="height:42px">
+          <svg class="icon"><use href="{% static 'icons.svg' %}#i-log-in"></use></svg>
+          Войти
+        </button>
+      </form>
+
+      {% include "registration/_google_auth.html" %}
+
+      <p class="auth-switch">
+        Нет аккаунта?
+        <a class="text-link" href="{% url 'signup' %}{% if next %}?next={{ next|urlencode }}{% endif %}">Зарегистрироваться</a>
+      </p>
+    </div>
+  </main>
+</div>
+{% endblock %}

@@ -1,0 +1,514 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}{{ project.title }} — LamoFrame{% endblock %}
+{% block body_class %}editor-body{% endblock %}
+{% block styles %}<link rel="stylesheet" href="{% static 'css/editor.css' %}?v={{ ASSET_VERSION }}">{% endblock %}
+
+{% block content %}
+<div class="editor-mobile-stub">
+  <div class="stub-card">
+    <span class="logo-mark" style="width:44px;height:44px;border-radius:12px"><svg class="icon icon-lg"><use href="{% static 'icons.svg' %}#i-monitor"></use></svg></span>
+    <h1>Откройте редактор на компьютере</h1>
+    <p>Свободный холст и панели требуют большого экрана. На мобильном доступен только просмотр проектов.</p>
+    <a class="btn btn-primary" href="{% url 'dashboard' %}">Вернуться к проектам</a>
+  </div>
+</div>
+
+<div class="editor-shell" id="editorShell">
+  <header class="editor-topbar">
+    <a class="logo editor-logo" href="{% url 'dashboard' %}" title="Все проекты — LamoFrame">
+      <span class="logo-mark"><svg class="icon"><use href="{% static 'icons.svg' %}#i-logo"></use></svg></span>
+      <span class="editor-brand">LamoFrame</span>
+    </a>
+    <div class="divider-v"></div>
+    <div class="project-crumb">
+      <a class="crumb-home" href="{% url 'dashboard' %}">Проекты</a>
+      <span class="crumb-slash">/</span>
+      <input class="project-title" id="projectTitle" value="{{ project.title }}" maxlength="200" aria-label="Название проекта" spellcheck="false">
+    </div>
+
+    <div class="save-indicator" id="saveIndicator" data-state="saved" role="status" aria-live="polite">
+      <span class="save-dot"></span>
+      <span id="saveText">Сохранено</span>
+    </div>
+
+    <div class="spacer"></div>
+
+    <div class="history-controls">
+      <button class="btn btn-icon" type="button" id="undoBtn" title="Отменить (⌘Z)" aria-label="Отменить" disabled>
+        <svg class="icon"><use href="{% static 'icons.svg' %}#i-undo"></use></svg>
+      </button>
+      <button class="btn btn-icon" type="button" id="redoBtn" title="Повторить (⇧⌘Z)" aria-label="Повторить" disabled>
+        <svg class="icon"><use href="{% static 'icons.svg' %}#i-redo"></use></svg>
+      </button>
+    </div>
+    <div class="divider-v"></div>
+    <button class="btn btn-icon" type="button" id="themeBtn" title="Тема редактора" aria-label="Переключить тему">
+      <svg class="icon theme-icon-light"><use href="{% static 'icons.svg' %}#i-moon"></use></svg>
+      <svg class="icon theme-icon-dark"><use href="{% static 'icons.svg' %}#i-sun"></use></svg>
+    </button>
+    <button class="btn btn-icon" type="button" id="shortcutsBtn" title="Горячие клавиши (?)" aria-label="Горячие клавиши">
+      <svg class="icon"><use href="{% static 'icons.svg' %}#i-keyboard"></use></svg>
+    </button>
+    <button class="btn btn-icon" type="button" id="presentationBtn" title="Презентация (Shift+F)" aria-label="Режим презентации">
+      <svg class="icon"><use href="{% static 'icons.svg' %}#i-monitor"></use></svg>
+    </button>
+    <div class="divider-v"></div>
+    <button class="btn btn-outline" type="button" id="previewBtn">
+      <svg class="icon"><use href="{% static 'icons.svg' %}#i-play"></use></svg>
+      Превью
+    </button>
+    <button class="btn btn-primary export-btn" type="button" id="exportBtn" data-export>
+      <svg class="icon"><use href="{% static 'icons.svg' %}#i-download"></use></svg>
+      Экспорт
+    </button>
+    <div class="topbar-avatar" title="{{ user.username }}">{{ user.username|slice:":1" }}</div>
+  </header>
+
+  <div class="editor-main">
+    <aside class="left-panel" id="leftPanel" aria-label="Библиотека, слои и файлы">
+      <div class="side-tabs" role="tablist">
+        <button class="side-tab is-active" type="button" data-tab="elements" role="tab" aria-selected="true" title="Элементы">
+          <svg class="icon"><use href="{% static 'icons.svg' %}#i-grid"></use></svg>
+          <span>Элементы</span>
+        </button>
+        <button class="side-tab" type="button" data-tab="layers" role="tab" aria-selected="false" title="Слои">
+          <svg class="icon"><use href="{% static 'icons.svg' %}#i-layers"></use></svg>
+          <span>Слои</span>
+          <em class="tab-count" id="layersCount"></em>
+        </button>
+        <button class="side-tab" type="button" data-tab="pages" role="tab" aria-selected="false" title="Страницы">
+          <svg class="icon"><use href="{% static 'icons.svg' %}#i-pages"></use></svg>
+          <span>Страницы</span>
+          <em class="tab-count" id="pagesCount"></em>
+        </button>
+        <button class="side-tab" type="button" data-tab="files" role="tab" aria-selected="false" title="Файлы">
+          <svg class="icon"><use href="{% static 'icons.svg' %}#i-files"></use></svg>
+          <span>Файлы</span>
+          <em class="tab-count" id="assetsCount"></em>
+        </button>
+        <button class="side-tab" type="button" data-tab="frames" role="tab" aria-selected="false" title="Фреймы">
+          <svg class="icon"><use href="{% static 'icons.svg' %}#i-sections"></use></svg>
+          <span>Фреймы</span>
+        </button>
+        <button class="side-tab" type="button" data-tab="adaptive" role="tab" aria-selected="false" title="Адаптив">
+          <svg class="icon"><use href="{% static 'icons.svg' %}#i-monitor"></use></svg>
+          <span>Адаптив</span>
+        </button>
+      </div>
+
+      <div class="side-panels">
+        <section class="side-panel is-active" data-panel="elements">
+          <div class="side-panel-head">
+            <span>Готовые блоки</span>
+            <span class="muted">шаблоны</span>
+          </div>
+          <div class="element-library block-library">
+            <button class="lib-item" type="button" data-block="header">
+              <span class="lib-icon"><svg class="icon"><use href="{% static 'icons.svg' %}#i-layers"></use></svg></span>
+              <span>Шапка</span>
+            </button>
+            <button class="lib-item" type="button" data-block="footer">
+              <span class="lib-icon"><svg class="icon"><use href="{% static 'icons.svg' %}#i-sections"></use></svg></span>
+              <span>Подвал</span>
+            </button>
+            <button class="lib-item" type="button" data-block="hero">
+              <span class="lib-icon"><svg class="icon"><use href="{% static 'icons.svg' %}#i-monitor"></use></svg></span>
+              <span>Первый экран</span>
+            </button>
+            <button class="lib-item" type="button" data-block="features">
+              <span class="lib-icon"><svg class="icon"><use href="{% static 'icons.svg' %}#i-grid"></use></svg></span>
+              <span>Преимущества</span>
+            </button>
+            <button class="lib-item" type="button" data-block="about">
+              <span class="lib-icon"><svg class="icon"><use href="{% static 'icons.svg' %}#i-type"></use></svg></span>
+              <span>О компании</span>
+            </button>
+            <button class="lib-item" type="button" data-block="cta">
+              <span class="lib-icon"><svg class="icon"><use href="{% static 'icons.svg' %}#i-button"></use></svg></span>
+              <span>Призыв</span>
+            </button>
+            <button class="lib-item" type="button" data-block="gallery">
+              <span class="lib-icon"><svg class="icon"><use href="{% static 'icons.svg' %}#i-image"></use></svg></span>
+              <span>Галерея</span>
+            </button>
+            <button class="lib-item" type="button" data-block="contact">
+              <span class="lib-icon"><svg class="icon"><use href="{% static 'icons.svg' %}#i-embed"></use></svg></span>
+              <span>Контакты</span>
+            </button>
+          </div>
+          <p class="side-note">Шапка и подвал — общие компоненты: правка на одной странице меняет их на всех, а при экспорте они всегда сверху и снизу.</p>
+
+          <div class="side-panel-head" style="margin-top:14px">
+            <span>Добавить элемент</span>
+            <span class="muted">клик</span>
+          </div>
+          <div class="element-library">
+            <button class="lib-item" type="button" data-add="frame">
+              <span class="lib-icon"><svg class="icon"><use href="{% static 'icons.svg' %}#i-sections"></use></svg></span>
+              <span>Фрейм</span>
+            </button>
+            <button class="lib-item" type="button" data-add="text">
+              <span class="lib-icon"><svg class="icon"><use href="{% static 'icons.svg' %}#i-type"></use></svg></span>
+              <span>Текст</span>
+            </button>
+            <button class="lib-item" type="button" data-add="heading">
+              <span class="lib-icon"><svg class="icon"><use href="{% static 'icons.svg' %}#i-heading"></use></svg></span>
+              <span>Заголовок</span>
+            </button>
+            <button class="lib-item" type="button" data-add="button">
+              <span class="lib-icon"><svg class="icon"><use href="{% static 'icons.svg' %}#i-button"></use></svg></span>
+              <span>Кнопка</span>
+            </button>
+            <button class="lib-item" type="button" data-add="link">
+              <span class="lib-icon"><svg class="icon"><use href="{% static 'icons.svg' %}#i-link"></use></svg></span>
+              <span>Ссылка</span>
+            </button>
+            <button class="lib-item" type="button" data-add="image">
+              <span class="lib-icon"><svg class="icon"><use href="{% static 'icons.svg' %}#i-image"></use></svg></span>
+              <span>Изображение</span>
+            </button>
+            <button class="lib-item" type="button" data-add="shape">
+              <span class="lib-icon"><svg class="icon"><use href="{% static 'icons.svg' %}#i-square"></use></svg></span>
+              <span>Фигура</span>
+            </button>
+            <button class="lib-item" type="button" data-add="line">
+              <span class="lib-icon"><svg class="icon"><use href="{% static 'icons.svg' %}#i-line"></use></svg></span>
+              <span>Линия</span>
+            </button>
+          </div>
+          <div class="side-panel-head" style="margin-top:14px">
+            <span>Встраивание</span>
+          </div>
+          <button class="lib-item lib-wide" type="button" data-add="embed">
+            <span class="lib-icon"><svg class="icon"><use href="{% static 'icons.svg' %}#i-embed"></use></svg></span>
+            <span>
+              <strong>iframe</strong>
+              <small class="muted">Видео, карта, форма</small>
+            </span>
+          </button>
+          <div class="library-hint">
+            <svg class="icon icon-sm"><use href="{% static 'icons.svg' %}#i-sparkles"></use></svg>
+            <p>Совет: <b>Alt</b> + перетаскивание создаёт копию, <b>⌘K</b> открывает командную палитру.</p>
+          </div>
+        </section>
+
+        <section class="side-panel" data-panel="layers">
+          <div class="side-panel-head">
+            <span>Слои</span>
+            <span class="muted">сверху — выше</span>
+          </div>
+          <div class="layers-list" id="layersList"></div>
+        </section>
+
+        <section class="side-panel" data-panel="pages">
+          <div class="side-panel-head">
+            <span>Страницы</span>
+            <button class="btn btn-sm btn-outline" type="button" id="addPageBtn">
+              <svg class="icon icon-sm"><use href="{% static 'icons.svg' %}#i-plus"></use></svg>
+              Добавить
+            </button>
+          </div>
+          <div class="pages-list" id="pagesList"></div>
+          <p class="side-note">У каждой страницы свой холст. Ссылки на страницы добавляйте в шапку — в ссылке выберите нужную страницу. Шапка и подвал общие для всего сайта.</p>
+        </section>
+
+        <section class="side-panel" data-panel="files">
+          <div class="side-panel-head">
+            <span>Файлы проекта</span>
+            <button class="btn btn-sm btn-outline" type="button" id="uploadAssetBtn">
+              <svg class="icon icon-sm"><use href="{% static 'icons.svg' %}#i-upload"></use></svg>
+              Загрузить
+            </button>
+          </div>
+          <div class="assets-list" id="assetsList"></div>
+          <p class="side-note">JPEG, PNG, WebP или GIF до 2 МБ. При экспорте изображения встраиваются в файл.</p>
+        </section>
+
+        <section class="side-panel" data-panel="frames">
+          <div class="side-panel-head">
+            <span>Фреймы</span>
+            <button class="btn btn-sm btn-outline" type="button" id="addFrameBtn">
+              <svg class="icon icon-sm"><use href="{% static 'icons.svg' %}#i-plus"></use></svg>
+              Добавить
+            </button>
+          </div>
+          <div class="frames-list" id="framesList"></div>
+          <p class="side-note">Фреймы — это свободные артборды, как в Figma. Меняйте их размер мышью за грани и углы. Клавиша <b>F</b> включает инструмент рисования фрейма. <b>Shift</b>+клик выделяет несколько фреймов, <b>Del</b> удаляет их все.</p>
+        </section>
+
+        <section class="side-panel" data-panel="adaptive">
+          <div class="side-panel-head">
+            <span>Адаптив</span>
+            <span class="muted">макет под устройства</span>
+          </div>
+
+          <label class="auto-toggle" for="adaptiveAuto">
+            <span class="auto-toggle-text">
+              <strong>Авто</strong>
+              <small>Экспорт подстраивается сам: масштаб и колонка на телефоне</small>
+            </span>
+            <span class="switch">
+              <input type="checkbox" id="adaptiveAuto" checked>
+              <span class="switch-track" aria-hidden="true"><span class="switch-thumb"></span></span>
+            </span>
+          </label>
+
+          <div class="device-options" id="adaptiveModes" role="radiogroup" aria-label="Макет устройства">
+            <button class="device-option" type="button" data-responsive-mode="desktop" role="radio" aria-checked="false" disabled>
+              <span class="device-option-icon"><svg class="icon"><use href="{% static 'icons.svg' %}#i-monitor"></use></svg></span>
+              <span class="device-option-text">
+                <strong>Десктоп <em class="device-option-badge">макет</em></strong>
+                <small>Базовый макет — как на большом экране</small>
+              </span>
+            </button>
+            <button class="device-option" type="button" data-responsive-mode="tablet" role="radio" aria-checked="false" disabled>
+              <span class="device-option-icon"><svg class="icon"><use href="{% static 'icons.svg' %}#i-tablet"></use></svg></span>
+              <span class="device-option-text">
+                <strong>Планшет</strong>
+                <small>Свой макет для 768 px — правится вручную</small>
+              </span>
+            </button>
+            <button class="device-option" type="button" data-responsive-mode="phone" role="radio" aria-checked="false" disabled>
+              <span class="device-option-icon"><svg class="icon"><use href="{% static 'icons.svg' %}#i-phone"></use></svg></span>
+              <span class="device-option-text">
+                <strong>Смартфон</strong>
+                <small>Свой макет для 390 px — правится вручную</small>
+              </span>
+            </button>
+          </div>
+          <p class="side-note" id="adaptiveHint">Включите «Авто» — и экспорт сам адаптируется. Выключите, чтобы собрать отдельный макет для планшета и смартфона на каждой странице.</p>
+
+          <button class="btn btn-outline btn-sm adaptive-reset" type="button" id="adaptiveResetBtn" hidden>
+            <svg class="icon icon-sm"><use href="{% static 'icons.svg' %}#i-rotate"></use></svg>
+            Пересобрать макет из десктопа
+          </button>
+
+          <div class="side-panel-head adaptive-check-head">
+            <span>Проверить</span>
+            <span class="muted">превью</span>
+          </div>
+          <div class="adaptive-check" role="group" aria-label="Проверить в превью">
+            <button class="btn btn-sm btn-outline" type="button" data-adaptive-preview="desktop">
+              <svg class="icon icon-sm"><use href="{% static 'icons.svg' %}#i-monitor"></use></svg>
+              Десктоп
+            </button>
+            <button class="btn btn-sm btn-outline" type="button" data-adaptive-preview="tablet">
+              <svg class="icon icon-sm"><use href="{% static 'icons.svg' %}#i-tablet"></use></svg>
+              Планшет
+            </button>
+            <button class="btn btn-sm btn-outline" type="button" data-adaptive-preview="phone">
+              <svg class="icon icon-sm"><use href="{% static 'icons.svg' %}#i-phone"></use></svg>
+              Телефон
+            </button>
+          </div>
+          <p class="side-note">Превью показывает готовый сайт. «Авто» подходит почти всегда; ручные макеты нужны, когда хочется переставить блоки именно под телефон и планшет.</p>
+        </section>
+      </div>
+
+      <div class="left-footer">
+        <button class="btn btn-ghost btn-sm" type="button" data-open-shortcuts>
+          <svg class="icon icon-sm"><use href="{% static 'icons.svg' %}#i-keyboard"></use></svg>
+          Горячие клавиши
+        </button>
+        <button class="btn btn-ghost btn-sm" type="button" id="tourBtn" title="Повторить тур">
+          <svg class="icon icon-sm"><use href="{% static 'icons.svg' %}#i-help"></use></svg>
+        </button>
+      </div>
+    </aside>
+
+    <div class="panel-resizer" id="leftResizer" role="separator" aria-orientation="vertical"
+         aria-label="Изменить ширину панели" aria-valuemin="200" aria-valuemax="560" tabindex="0"
+         title="Потяните, чтобы изменить ширину · двойной клик — сброс"></div>
+
+    <main class="canvas-area" aria-label="Холст">
+      <div class="canvas-meta">
+        <span class="canvas-badge" id="canvasBadge">— × —</span>
+        <span class="canvas-sep"></span>
+        <span class="muted" id="canvasSections">0 фреймов</span>
+        <span class="spacer"></span>
+        <span class="muted canvas-tip">Space + перетаскивание — пан · ⌘ + колесо — зум</span>
+      </div>
+
+      <div class="canvas-viewport" id="canvasViewport">
+        <div class="canvas-world" id="canvasWorld">
+          <div id="framesRoot"></div>
+          <div class="canvas-overlay" id="canvasOverlay">
+            <div id="selectionBoxes"></div>
+            <div id="guides"></div>
+            <div id="marquee" class="marquee" hidden></div>
+            <div id="frameTags"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="zoom-bar" role="group" aria-label="Масштаб">
+        <button class="btn btn-icon" type="button" id="zoomOutBtn" title="Уменьшить" aria-label="Уменьшить масштаб">
+          <svg class="icon icon-sm"><use href="{% static 'icons.svg' %}#i-minus"></use></svg>
+        </button>
+        <button class="zoom-value" type="button" id="zoomLabel" title="Сбросить до 100%">100%</button>
+        <button class="btn btn-icon" type="button" id="zoomInBtn" title="Увеличить" aria-label="Увеличить масштаб">
+          <svg class="icon icon-sm"><use href="{% static 'icons.svg' %}#i-plus"></use></svg>
+        </button>
+        <div class="divider-v"></div>
+        <button class="btn btn-icon" type="button" id="fitBtn" title="Вписать (⇧1)" aria-label="Вписать холст">
+          <svg class="icon icon-sm"><use href="{% static 'icons.svg' %}#i-fit"></use></svg>
+        </button>
+      </div>
+    </main>
+
+    <aside class="right-panel" id="propertiesPanel" aria-label="Свойства"></aside>
+  </div>
+</div>
+
+<div class="size-tooltip" id="sizeTooltip" hidden></div>
+
+<!-- Command palette -->
+<div class="modal palette-modal" id="commandPalette" hidden role="dialog" aria-modal="true" aria-label="Командная палитра">
+  <div class="palette">
+    <div class="palette-search">
+      <svg class="icon"><use href="{% static 'icons.svg' %}#i-search"></use></svg>
+      <input id="paletteInput" placeholder="Найти действие… «кнопка», «экспорт», «тёмная тема»" autocomplete="off" spellcheck="false">
+      <span class="kbd">esc</span>
+    </div>
+    <div class="palette-list" id="paletteList"></div>
+    <div class="palette-footer">
+      <span><span class="kbd">↑</span><span class="kbd">↓</span> навигация</span>
+      <span><span class="kbd">↵</span> выбрать</span>
+      <button class="palette-close" type="button" data-close-palette>Закрыть</button>
+    </div>
+  </div>
+</div>
+
+<!-- Shortcuts -->
+<div class="modal" id="shortcutsModal" hidden role="dialog" aria-modal="true" aria-labelledby="shortcutsTitle">
+  <div class="modal-card shortcuts-card">
+    <div class="modal-head">
+      <div>
+        <h2 id="shortcutsTitle">Горячие клавиши</h2>
+        <p>Всё, что ускоряет сборку страницы.</p>
+      </div>
+      <button class="btn btn-icon" type="button" data-close-modal="shortcutsModal" aria-label="Закрыть">
+        <svg class="icon"><use href="{% static 'icons.svg' %}#i-close"></use></svg>
+      </button>
+    </div>
+    <div class="modal-body shortcuts-grid">
+      <div class="shortcut-group">
+        <h3>Выделение</h3>
+        <div class="shortcut-row"><span>Выбрать все</span><span><span class="kbd">⌘</span><span class="kbd">A</span></span></div>
+        <div class="shortcut-row"><span>Добавить к выделению</span><span><span class="kbd">Shift</span>+клик</span></div>
+        <div class="shortcut-row"><span>Рамка выделения</span><span>протянуть по пустому</span></div>
+        <div class="shortcut-row"><span>Снять выделение</span><span class="kbd">Esc</span></div>
+      </div>
+      <div class="shortcut-group">
+        <h3>Правка</h3>
+        <div class="shortcut-row"><span>Отменить</span><span><span class="kbd">⌘</span><span class="kbd">Z</span></span></div>
+        <div class="shortcut-row"><span>Повторить</span><span><span class="kbd">⇧</span><span class="kbd">⌘</span><span class="kbd">Z</span></span></div>
+        <div class="shortcut-row"><span>Дублировать</span><span><span class="kbd">⌘</span><span class="kbd">D</span></span></div>
+        <div class="shortcut-row"><span>Копировать / вставить</span><span><span class="kbd">⌘</span><span class="kbd">C</span> / <span class="kbd">V</span></span></div>
+        <div class="shortcut-row"><span>Удалить</span><span class="kbd">Del</span></div>
+        <div class="shortcut-row"><span>Копия при перетаскивании</span><span><span class="kbd">Alt</span>+drag</span></div>
+      </div>
+      <div class="shortcut-group">
+        <h3>Фреймы</h3>
+        <div class="shortcut-row"><span>Инструмент «Фрейм»</span><span class="kbd">F</span></div>
+        <div class="shortcut-row"><span>Нарисовать фрейм</span><span>протянуть по холсту</span></div>
+        <div class="shortcut-row"><span>Ресайз за грани и углы</span><span>8 маркеров</span></div>
+        <div class="shortcut-row"><span>Отмена инструмента</span><span class="kbd">Esc</span></div>
+      </div>
+      <div class="shortcut-group">
+        <h3>Холст</h3>
+        <div class="shortcut-row"><span>Пан</span><span><span class="kbd">Space</span>+drag</span></div>
+        <div class="shortcut-row"><span>Зум</span><span><span class="kbd">⌘</span>+колесо</span></div>
+        <div class="shortcut-row"><span>Вписать в окно</span><span><span class="kbd">⇧</span><span class="kbd">1</span></span></div>
+        <div class="shortcut-row"><span>Сдвиг на 1 / 10 px</span><span>стрелки / <span class="kbd">Shift</span>+стрелки</span></div>
+        <div class="shortcut-row"><span>Правка текста</span><span>двойной клик</span></div>
+        <div class="shortcut-row"><span>Презентация</span><span><span class="kbd">⇧</span><span class="kbd">F</span></span></div>
+      </div>
+      <div class="shortcut-group">
+        <h3>Проект</h3>
+        <div class="shortcut-row"><span>Сохранить</span><span><span class="kbd">⌘</span><span class="kbd">S</span></span></div>
+        <div class="shortcut-row"><span>Командная палитра</span><span><span class="kbd">⌘</span><span class="kbd">K</span></span></div>
+        <div class="shortcut-row"><span>Превью</span><span class="kbd">P</span></div>
+        <div class="shortcut-row"><span>Экспорт</span><span class="kbd">E</span></div>
+        <div class="shortcut-row"><span>Это окно</span><span class="kbd">?</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Preview -->
+<div class="modal preview-modal" id="previewModal" hidden role="dialog" aria-modal="true" aria-label="Превью страницы">
+  <div class="preview-shell">
+    <header class="preview-head">
+      <div class="preview-title">
+        <span class="preview-dot"></span>
+        <strong>Превью</strong>
+        <span class="muted" id="previewMeta">как будет выглядеть экспорт</span>
+      </div>
+      <div class="device-switch" role="group" aria-label="Устройство">
+        <button type="button" class="is-active" data-device="desktop" title="Компьютер" aria-label="Компьютер"><svg class="icon"><use href="{% static 'icons.svg' %}#i-monitor"></use></svg></button>
+        <button type="button" data-device="tablet" title="Планшет" aria-label="Планшет"><svg class="icon"><use href="{% static 'icons.svg' %}#i-tablet"></use></svg></button>
+        <button type="button" data-device="phone" title="Телефон" aria-label="Телефон"><svg class="icon"><use href="{% static 'icons.svg' %}#i-phone"></use></svg></button>
+      </div>
+      <div class="spacer"></div>
+      <button class="btn btn-outline btn-sm" type="button" id="previewNewTab">
+        <svg class="icon icon-sm"><use href="{% static 'icons.svg' %}#i-external"></use></svg>
+        Открыть
+      </button>
+      <button class="btn btn-icon" type="button" data-close-modal="previewModal" aria-label="Закрыть превью">
+        <svg class="icon"><use href="{% static 'icons.svg' %}#i-close"></use></svg>
+      </button>
+    </header>
+    <div class="preview-stage" id="previewStage">
+      <div class="preview-device" data-device-frame="desktop">
+        <iframe id="previewFrame" sandbox="allow-scripts allow-popups" title="Превью страницы"></iframe>
+      </div>
+    </div>
+    <footer class="preview-foot">
+      <span class="muted">Превью изолировано в sandbox iframe. Экспорт — ZIP с HTML-страницами и папкой assets.</span>
+      <button class="btn btn-primary btn-sm" type="button" id="previewExportBtn">
+        <svg class="icon icon-sm"><use href="{% static 'icons.svg' %}#i-download"></use></svg>
+        Скачать сайт (ZIP)
+      </button>
+    </footer>
+  </div>
+</div>
+
+<!-- Tour -->
+<div class="tour" id="tour" hidden>
+  <div class="tour-spot" id="tourSpot"></div>
+  <div class="tour-card" id="tourCard">
+    <div class="tour-step" id="tourStep">01 / 04</div>
+    <h3 id="tourTitle"></h3>
+    <p id="tourText"></p>
+    <div class="tour-actions">
+      <button class="btn btn-ghost btn-sm" type="button" id="tourSkip">Пропустить</button>
+      <div class="spacer"></div>
+      <div class="tour-dots" id="tourDots"></div>
+      <button class="btn btn-primary btn-sm" type="button" id="tourNext">Далее</button>
+    </div>
+  </div>
+</div>
+
+<input type="file" id="imageInput" accept="image/jpeg,image/png,image/webp,image/gif" hidden>
+<input type="file" id="assetInput" accept="image/jpeg,image/png,image/webp,image/gif" hidden multiple>
+
+{{ project.data|json_script:"project-data" }}
+{% endblock %}
+
+{% block scripts %}
+<script>
+  Object.assign(window.BUILDER, {
+    projectId: {{ project.pk }},
+    projectTitle: "{{ project.title|escapejs }}",
+    projectSlug: "{{ project.slug|escapejs }}",
+    apiUrl: "{% url 'api_project' project.pk %}",
+    uploadUrl: "{% url 'upload_asset' project.pk %}",
+    exportUrl: "{% url 'export_project' project.pk %}",
+    publicUrl: "{% url 'public_preview' project.slug %}",
+    updatedAt: "{{ project.updated_at.isoformat|escapejs }}"
+  });
+</script>
+<script type="module" src="{% static 'js/editor.js' %}?v={{ ASSET_VERSION }}"></script>
+{% endblock %}

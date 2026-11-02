@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Регистрация — LamoFrame{% endblock %}
+{% block body_class %}auth-body{% endblock %}
+{% block styles %}{% endblock %}
+
+{% block content %}
+<div class="auth">
+  <aside class="auth-visual">
+    <a class="logo" href="/">
+      <span class="logo-mark"><svg class="icon"><use href="{% static 'icons.svg' %}#i-logo"></use></svg></span>
+      LamoFrame
+    </a>
+    <div class="auth-hero">
+      <h1>Соберите сайт на свободном холсте</h1>
+      <p>Перетаскивайте блоки, настраивайте свойства и скачивайте готовый сайт в ZIP. Без кода и без сборки.</p>
+    </div>
+    <div class="auth-art" aria-hidden="true"><span></span><span></span><span></span></div>
+  </aside>
+
+  <main class="auth-form-wrap">
+    <div class="auth-stack">
+      <form class="auth-form" method="post" action="{% url 'signup' %}">
+        {% csrf_token %}
+        <div>
+          <h2>Регистрация</h2>
+          <p class="lead">Создайте аккаунт, чтобы начать собирать сайты.</p>
+        </div>
+
+        {% if form.non_field_errors %}
+          <div class="auth-error" role="alert">
+            {% for error in form.non_field_errors %}{{ error }}{% if not forloop.last %}<br>{% endif %}{% endfor %}
+          </div>
+        {% endif %}
+
+        {% if next %}<input type="hidden" name="next" value="{{ next }}">{% endif %}
+
+        <div class="field{% if form.username.errors %} has-error{% endif %}">
+          <label for="id_username">Логин</label>
+          <input class="input" id="id_username" name="username" autocomplete="username" autofocus required
+                 value="{{ form.username.value|default:'' }}" placeholder="Например, anna"
+                 {% if form.username.errors %}aria-invalid="true" aria-describedby="id_username_error"{% endif %}>
+          {% for error in form.username.errors %}<p class="field-error" id="id_username_error">{{ error }}</p>{% endfor %}
+        </div>
+
+        <div class="field{% if form.email.errors %} has-error{% endif %}">
+          <label for="id_email">Email <span class="muted">(необязательно)</span></label>
+          <input class="input" id="id_email" name="email" type="email" autocomplete="email"
+                 value="{{ form.email.value|default:'' }}" placeholder="you@example.com"
+                 {% if form.email.errors %}aria-invalid="true" aria-describedby="id_email_error"{% endif %}>
+          {% for error in form.email.errors %}<p class="field-error" id="id_email_error">{{ error }}</p>{% endfor %}
+        </div>
+
+        <div class="field{% if form.password1.errors %} has-error{% endif %}">
+          <label for="id_password1">Пароль</label>
+          <input class="input" id="id_password1" name="password1" type="password" autocomplete="new-password" required
+                 placeholder="••••••••"
+                 {% if form.password1.errors %}aria-invalid="true" aria-describedby="id_password1_error"{% endif %}>
+          {% for error in form.password1.errors %}<p class="field-error" id="id_password1_error">{{ error }}</p>{% endfor %}
+          {% if not form.password1.errors %}<p class="field-hint">Минимум 8 символов, не только цифры.</p>{% endif %}
+        </div>
+
+        <div class="field{% if form.password2.errors %} has-error{% endif %}">
+          <label for="id_password2">Повторите пароль</label>
+          <input class="input" id="id_password2" name="password2" type="password" autocomplete="new-password" required
+                 placeholder="••••••••"
+                 {% if form.password2.errors %}aria-invalid="true" aria-describedby="id_password2_error"{% endif %}>
+          {% for error in form.password2.errors %}<p class="field-error" id="id_password2_error">{{ error }}</p>{% endfor %}
+        </div>
+
+        <button class="btn btn-primary" type="submit" style="height:42px">
+          <svg class="icon"><use href="{% static 'icons.svg' %}#i-user-plus"></use></svg>
+          Создать аккаунт
+        </button>
+      </form>
+
+      {% include "registration/_google_auth.html" %}
+
+      <p class="auth-switch">
+        Уже есть аккаунт?
+        <a class="text-link" href="{% url 'login' %}">Войти</a>
+      </p>
+    </div>
+  </main>
+</div>
+{% endblock %}
